@@ -1,28 +1,33 @@
-package com.msquare.sms.cache;
+package com.msquare.sms.delegate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import com.msquare.sms.beans.Student;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.config.CacheConfiguration;
 
-public class StudentManagementServiceCacheDAO {
+import org.springframework.stereotype.Component;
 
+import com.msquare.sms.beans.Student;
+
+@Component
+public class StudentManagementServiceCacheDelegate implements StudentManagementServiceDelegate{
+
+	private static final String STUDENT_CACHE_NAME = "student";
+	
 	private CacheManager cacheManager;
 	
-	public StudentManagementServiceCacheDAO() {
-		CacheManager.create();
-		cacheManager.addCache(new Cache(new CacheConfiguration("student", 1000).eternal(true)));
+	public StudentManagementServiceCacheDelegate() {
+		cacheManager = CacheManager.create();
+		cacheManager.addCache(new Cache(new CacheConfiguration(STUDENT_CACHE_NAME, 1000).eternal(true)));
 		loadCacheWithDefaultStudents();
 	}
 	
 	private void loadCacheWithDefaultStudents() {
-		Cache studentCache = cacheManager.getCache("student");
+		Cache studentCache = cacheManager.getCache(STUDENT_CACHE_NAME);
 		Student one = new Student();
 		one.setId(1L);
 		one.setFirstName("Bobby");
@@ -35,7 +40,7 @@ public class StudentManagementServiceCacheDAO {
 		studentCache.put(new Element(one.getId(), one));
 		
 		Student two = new Student();
-		two.setId(1L);
+		two.setId(2L);
 		two.setFirstName("Cindy");
 		two.setLastName("Lou");
 		two.setPhone("5552334567");
@@ -46,7 +51,7 @@ public class StudentManagementServiceCacheDAO {
 		studentCache.put(new Element(two.getId(), two));
 		
 		Student three = new Student();
-		three.setId(1L);
+		three.setId(3L);
 		three.setFirstName("Justin");
 		three.setLastName("Douche");
 		three.setPhone("5554567890");

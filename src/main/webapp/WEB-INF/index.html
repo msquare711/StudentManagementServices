@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="studentManagement">
+<head>
+<meta charset="utf-8">
+<title>Student Management Services</title>
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+	<div ng-controller="StudentListCtrl">
+
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Student Management Services</h1>
+			<p>Manage your student information with ease!</p>
+		</div>
+		<div ng-repeat="student in students track by $index" class="row">
+			<div class="col-sm-2">
+				<h3>Student ID</h3>
+				<p>{{student.id}}</p>
+			</div>
+			<div class="col-sm-3">
+				<h3>Name</h3>
+				<p>{{student.lastName}}, {{student.firstName}}</p>
+			</div>
+			<div class="col-sm-4">
+				<h3>Mailing Address</h3>
+				<p>{{student.street}} {{student.city}}, {{student.state}} {{student.zipCode}}</p>
+			</div>
+			<div class="col-sm-3">
+				<h3>Alt Contact</h3>
+				<p>Phone: {{student.phone}}</p>
+				<p>Email: {{student.email}}</p>
+			</div>
+		</div>
+	</div>
+	
+		</div>
+</body>
+</html>

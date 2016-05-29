@@ -14,6 +14,7 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private String phone;
+	private String email;
 	private String street;
 	private String city;
 	private String state;
@@ -67,6 +68,12 @@ public class Student {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
